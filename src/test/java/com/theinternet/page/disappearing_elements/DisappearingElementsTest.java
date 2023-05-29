@@ -20,7 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.qase.api.annotation.QaseId;
 
 public class DisappearingElementsTest {
-  public static Logger log = LogManager.getLogger(DisappearingElementsPage.class.getName());
+  public static Logger log = LogManager.getLogger(DisappearingElementsTest.class.getName());
   private DisappearingElementsPage disappearingElementsPage;
   private WebDriver driver;
 
@@ -36,7 +36,7 @@ public class DisappearingElementsTest {
 
   @Test
   @QaseId(10)
-  public void checkElements() {
+  public void testElementAppearance() {
     this.disappearingElementsPage.load();
     WebElement list = this.disappearingElementsPage.getList();
 

@@ -18,12 +18,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.qase.api.annotation.QaseId;
 
 public class KeyPressesTest {
-  public static Logger log = LogManager.getLogger(KeyPressesPage.class.getName());
+  public static Logger log = LogManager.getLogger(KeyPressesTest.class.getName());
   private KeyPressesPage keyPressesPage;
   private WebDriver driver;
 
   @BeforeEach
-  public void prepareComponents() {
+  public void setup() {
     driver = new FirefoxDriver();
 
     Dimension dm = new Dimension(1024, 768);
@@ -35,7 +35,7 @@ public class KeyPressesTest {
 
   @Test
   @QaseId(11)
-  public void checkValue() {
+  public void testKeyValueDisplay() {
     this.keyPressesPage.load();
 
     WebElement input = this.keyPressesPage.getInputElement();
