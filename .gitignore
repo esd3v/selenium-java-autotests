@@ -2,3 +2,4 @@
 demo/
 target/
 **/*.properties
+!**/log4j2.properties
