@@ -15,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.qase.api.annotation.QaseId;
+
 public class KeyPressesTest {
   public static Logger log = LogManager.getLogger(KeyPressesPage.class.getName());
   private KeyPressesPage keyPressesPage;
@@ -32,6 +34,7 @@ public class KeyPressesTest {
   }
 
   @Test
+  @QaseId(11)
   public void checkValue() {
     this.keyPressesPage.load();
 

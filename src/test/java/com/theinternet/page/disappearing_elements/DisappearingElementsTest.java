@@ -9,12 +9,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.qase.api.annotation.QaseId;
 
 public class DisappearingElementsTest {
   public static Logger log = LogManager.getLogger(DisappearingElementsPage.class.getName());
@@ -32,6 +35,7 @@ public class DisappearingElementsTest {
   }
 
   @Test
+  @QaseId(10)
   public void checkElements() {
     this.disappearingElementsPage.load();
     WebElement list = this.disappearingElementsPage.getList();
