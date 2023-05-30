@@ -3,27 +3,25 @@ package com.theinternet.page.login;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.common.BaseTest;
 
 import io.qase.api.annotation.QaseId;
 
 public class LoginTest extends BaseTest {
-  public static Logger log = LogManager.getLogger(LoginPage.class.getName());
-  private LoginPage loginPage;
 
-  @BeforeEach
-  public void setupLoginPage() {
-    loginPage = new LoginPage(driver);
-  }
-
-  @Test
+  @ParameterizedTest
+  @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
   @QaseId(15)
-  public void testLoginPageOpen() {
+  public void testLoginPageOpen(Class<? extends WebDriver> webDriverClass) {
+    WebDriver driver = createDriver(webDriverClass);
+    LoginPage loginPage = new LoginPage(driver);
+
     loginPage.load();
 
     assertEquals(loginPage.getExpectedHeaderText(), loginPage.getHeaderText());
@@ -44,5 +42,4 @@ public class LoginTest extends BaseTest {
     assertEquals(loginPage.getExpectedLoginButtonText(), loginPage.getLoginButtonText());
     assertTrue(loginPage.isLoginButtonIconDisplayed());
   }
-
 }

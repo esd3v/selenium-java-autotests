@@ -27,7 +27,12 @@
       <version>5.9.2</version>
       <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.9.2</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
@@ -44,7 +49,6 @@
       <version>5.3.3</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
@@ -54,6 +58,12 @@
       <groupId>io.qase</groupId>
       <artifactId>qase-junit5</artifactId>
       <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>5.3.3</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

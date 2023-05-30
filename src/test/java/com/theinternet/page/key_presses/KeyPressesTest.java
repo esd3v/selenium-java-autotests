@@ -2,29 +2,29 @@ package com.theinternet.page.key_presses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.common.BaseTest;
 
 import io.qase.api.annotation.QaseId;
 
 public class KeyPressesTest extends BaseTest {
-  private KeyPressesPage keyPressesPage;
-
-  @BeforeEach
-  public void setupKeyPressesPage() {
-    keyPressesPage = new KeyPressesPage(driver);
-  }
-
-  @Test
+  @ParameterizedTest
+  @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
   @QaseId(11)
-  public void testKeyValueDisplay() {
-    this.keyPressesPage.load();
+  public void testKeyValueDisplay(Class<? extends WebDriver> webDriverClass) {
+    WebDriver driver = createDriver(webDriverClass);
+    KeyPressesPage keyPressesPage = new KeyPressesPage(driver);
 
-    WebElement input = this.keyPressesPage.getInputElement();
+    keyPressesPage.load();
+
+    WebElement input = keyPressesPage.getInputElement();
 
     Object[] keys = {
         Keys.ESCAPE,
