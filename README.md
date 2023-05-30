@@ -1,8 +1,8 @@
-## Installation
-```
-  mvn clean install
-```
-## Set app properties
+## Minimum Requirements
+- Maven 3.6.3
+- Java 11.0.18
+
+## App properties
 Add these properties with your values to `src/test/java/com/common/app.properties`:
 `QASE_ENABLE=true`
 `QASE_PROJECT_CODE=PRJ`
