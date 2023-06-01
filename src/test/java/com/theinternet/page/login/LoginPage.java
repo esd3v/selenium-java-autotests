@@ -5,36 +5,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.common.BasePage;
-import com.theinternet.component.alert.AlertComponent;
 
 public class LoginPage extends BasePage<LoginPage> {
-  private String expectedHeaderText = "Login Page";
-  private String expectedSubheaderText = "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
-  private String expectedUsernameLabelText = "Username";
-  private String expectedPasswordLabelText = "Password";
-  private String expectedLoginButtonText = "Login";
-  private String expectedErrorAlertText = "Your username is invalid!";
-
   public LoginPage(WebDriver driver) {
     super(driver, "login");
-    alertComponent = new AlertComponent(driver);
   }
 
   // Alert
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
-  public AlertComponent alertComponent;
+  private String expectedErrorAlertText = "Your username is invalid!";
 
-  private WebElement getAlert() {
-    return alertComponent.getAlertsByText(expectedErrorAlertText).get(0);
-  }
-
-  public boolean isAlertError() {
-    return alertComponent.isError(getAlert());
-  }
-
-  public boolean isAlertVisible() {
-    return alertComponent.isError(getAlert());
+  public String getExpectedErrorAlertText() {
+    return expectedErrorAlertText;
   }
 
   // Header
@@ -42,6 +25,8 @@ public class LoginPage extends BasePage<LoginPage> {
   ///////////////////////////////////////////////////////////////////
   private String headerTag = "h2";
   private String subheaderTag = "h4";
+  private String expectedHeaderText = "Login Page";
+  private String expectedSubheaderText = "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
   public String getHeaderText() {
     return driver.findElement(By.tagName(headerTag)).getText();
@@ -56,6 +41,8 @@ public class LoginPage extends BasePage<LoginPage> {
   ///////////////////////////////////////////////////////////////////
   private String usernameLabelSelector = "label[for='username']";
   private String passwordLabelSelector = "label[for='password']";
+  private String expectedUsernameLabelText = "Username";
+  private String expectedPasswordLabelText = "Password";
 
   public boolean isUsernameLabelDisplayed() {
     return driver.findElement(By.cssSelector(usernameLabelSelector)).isDisplayed();
@@ -91,6 +78,7 @@ public class LoginPage extends BasePage<LoginPage> {
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
   private String loginButtonSelector = "button[type='submit']";
+  private String expectedLoginButtonText = "Login";
 
   public WebElement getLoginButtonElement() {
     return driver.findElement(By.cssSelector(loginButtonSelector));

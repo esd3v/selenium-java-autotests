@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
@@ -22,16 +21,18 @@ public abstract class BaseTest {
         WebDriverManager.firefoxdriver().setup();
     }
 
-    public WebDriver createDriver(Class<? extends WebDriver> webDriverClass) {
-        driver = WebDriverManager.getInstance(webDriverClass).create();
-        setUpDriverConfig(driver);
-        return driver;
-    }
+    public WebDriver createDriver(Class<? extends WebDriver> webDriverClass, Integer... dimensions) {
+        int width = (dimensions.length > 0) ? dimensions[0] : 1024;
+        int height = (dimensions.length > 1) ? dimensions[1] : 768;
+        int timeout = (dimensions.length > 2) ? dimensions[2] : 10;
 
-    public void setUpDriverConfig(WebDriver driver) {
-        Dimension dm = new Dimension(1024, 768);
+        driver = WebDriverManager.getInstance(webDriverClass).create();
+
+        Dimension dm = new Dimension(width, height);
         driver.manage().window().setSize(dm);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
+
+        return driver;
     }
 
     @AfterEach
