@@ -3,6 +3,7 @@ package com.theinternet.page.login;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
@@ -49,7 +50,7 @@ public class LoginTest extends BaseTest {
   @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
   @QaseId(16)
   public void testSubmitEmptyForm(Class<? extends WebDriver> webDriverClass) {
-    WebDriver driver = createDriver(webDriverClass, 1920, 1080);
+    WebDriver driver = createDriver(webDriverClass);
     LoginPage loginPage = new LoginPage(driver);
     AlertComponent alertComponent = new AlertComponent(driver);
 
@@ -70,7 +71,7 @@ public class LoginTest extends BaseTest {
   @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
   @QaseId(13)
   public void testSubmitValidForm(Class<? extends WebDriver> webDriverClass) throws InterruptedException {
-    WebDriver driver = createDriver(webDriverClass, 1920, 1080);
+    WebDriver driver = createDriver(webDriverClass);
     LoginPage loginPage = new LoginPage(driver);
     SecurePage securePage = new SecurePage(driver);
     AlertComponent alertComponent = new AlertComponent(driver);

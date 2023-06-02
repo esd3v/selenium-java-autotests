@@ -6,8 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -22,11 +27,32 @@ public abstract class BaseTest {
     }
 
     public WebDriver createDriver(Class<? extends WebDriver> webDriverClass, Integer... dimensions) {
-        int width = (dimensions.length > 0) ? dimensions[0] : 1024;
-        int height = (dimensions.length > 1) ? dimensions[1] : 768;
+        AppConfig appConfig = new AppConfig();
+        Capabilities options = null;
+
+        int width = (dimensions.length > 0) ? dimensions[0] : 1920;
+        int height = (dimensions.length > 1) ? dimensions[1] : 1080;
         int timeout = (dimensions.length > 2) ? dimensions[2] : 10;
 
-        driver = WebDriverManager.getInstance(webDriverClass).create();
+        if (webDriverClass == ChromeDriver.class) {
+            ChromeOptions chromeOptions = new ChromeOptions();
+
+            if (appConfig.isHeadless()) {
+                chromeOptions.addArguments("--headless");
+            }
+
+            options = chromeOptions;
+        } else if (webDriverClass == FirefoxDriver.class) {
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+            if (appConfig.isHeadless()) {
+                firefoxOptions.addArguments("-headless");
+            }
+
+            options = firefoxOptions;
+        }
+
+        driver = WebDriverManager.getInstance(webDriverClass).capabilities(options).create();
 
         Dimension dm = new Dimension(width, height);
         driver.manage().window().setSize(dm);

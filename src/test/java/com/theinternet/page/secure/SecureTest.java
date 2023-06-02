@@ -21,7 +21,7 @@ public class SecureTest extends BaseTest {
     @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
     @QaseId(19)
     public void testUnauthenticatedSecurePageOpen(Class<? extends WebDriver> webDriverClass) {
-        WebDriver driver = createDriver(webDriverClass, 1920, 1080);
+        WebDriver driver = createDriver(webDriverClass);
         LoginPage loginPage = new LoginPage(driver);
         SecurePage securePage = new SecurePage(driver);
         AlertComponent alertComponent = new AlertComponent(driver);
