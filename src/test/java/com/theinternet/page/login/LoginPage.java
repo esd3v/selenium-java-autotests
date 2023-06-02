@@ -14,10 +14,15 @@ public class LoginPage extends BasePage<LoginPage> {
   // Alert
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
-  private String expectedErrorAlertText = "Your username is invalid!";
+  private String expectedInvalidUsernameAlertText = "Your username is invalid!";
+  private String expectedUnauthenticatedSecurePageAlertText = "You must login to view the secure area!";
 
-  public String getExpectedErrorAlertText() {
-    return expectedErrorAlertText;
+  public String getExpectedUnauthenticatedSecurePageAlertText() {
+    return expectedUnauthenticatedSecurePageAlertText;
+  }
+
+  public String getExpectedInvalidUsernameAlertText() {
+    return expectedInvalidUsernameAlertText;
   }
 
   // Header

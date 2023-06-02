@@ -49,7 +49,7 @@ public class LoginTest extends BaseTest {
   @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
   @QaseId(16)
   public void testSubmitEmptyForm(Class<? extends WebDriver> webDriverClass) {
-    WebDriver driver = createDriver(webDriverClass);
+    WebDriver driver = createDriver(webDriverClass, 1920, 1080);
     LoginPage loginPage = new LoginPage(driver);
     AlertComponent alertComponent = new AlertComponent(driver);
 
@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest {
     // Check if page redirected back to /login
     loginPage.isLoaded();
 
-    WebElement loginPageErrorAlert = alertComponent.getAlertByText(loginPage.getExpectedErrorAlertText());
+    WebElement loginPageErrorAlert = alertComponent.getAlertByText(loginPage.getExpectedInvalidUsernameAlertText());
 
     assertTrue(loginPageErrorAlert.isDisplayed());
     assertTrue(alertComponent.isError(loginPageErrorAlert));
@@ -70,7 +70,7 @@ public class LoginTest extends BaseTest {
   @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
   @QaseId(13)
   public void testSubmitValidForm(Class<? extends WebDriver> webDriverClass) throws InterruptedException {
-    WebDriver driver = createDriver(webDriverClass);
+    WebDriver driver = createDriver(webDriverClass, 1920, 1080);
     LoginPage loginPage = new LoginPage(driver);
     SecurePage securePage = new SecurePage(driver);
     AlertComponent alertComponent = new AlertComponent(driver);
