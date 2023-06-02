@@ -145,7 +145,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
-              <systemPropertiesFile>src/test/java/com/common/app.properties</systemPropertiesFile>
+              <systemPropertiesFile>src/main/resources/app.properties</systemPropertiesFile>
             </configuration>
           </plugin>
         </plugins>
