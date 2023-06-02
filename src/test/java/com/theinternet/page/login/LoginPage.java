@@ -28,6 +28,14 @@ public class LoginPage extends BasePage<LoginPage> {
   private String expectedHeaderText = "Login Page";
   private String expectedSubheaderText = "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
+  public String getExpectedHeaderText() {
+    return expectedHeaderText;
+  }
+
+  public String getExpectedSubheaderText() {
+    return expectedSubheaderText;
+  }
+
   public String getHeaderText() {
     return driver.findElement(By.tagName(headerTag)).getText();
   }
@@ -65,13 +73,51 @@ public class LoginPage extends BasePage<LoginPage> {
   ///////////////////////////////////////////////////////////////////
   private String usernameInputId = "username";
   private String passwordInputId = "password";
+  private String expectedUsernameValue = "tomsmith";
+  private String expectedPasswordValue = "SuperSecretPassword!";
+
+  public String getExpectedUsernameLabelText() {
+    return expectedUsernameLabelText;
+  }
+
+  public String getExpectedPasswordLabelText() {
+    return expectedPasswordLabelText;
+  }
+
+  public String getExpectedUsernameValue() {
+    return expectedUsernameValue;
+  }
+
+  public String getExpectedPasswordValue() {
+    return expectedPasswordValue;
+  }
+
+  public WebElement getUsernameInput() {
+    return driver.findElement(By.id(usernameInputId));
+  }
+
+  public WebElement getPasswordInput() {
+    return driver.findElement(By.id(passwordInputId));
+  }
 
   public boolean isUsernameInputDisplayed() {
-    return driver.findElement(By.id(usernameInputId)).isDisplayed();
+    return getUsernameInput().isDisplayed();
   }
 
   public boolean isPasswordInputDisplayed() {
-    return driver.findElement(By.id(passwordInputId)).isDisplayed();
+    return getPasswordInput().isDisplayed();
+  }
+
+  public void fillUsernameInput(String username) {
+    WebElement usernameInput = getUsernameInput();
+    usernameInput.clear();
+    usernameInput.sendKeys(username);
+  }
+
+  public void fillPasswordInput(String password) {
+    WebElement passwordInput = getPasswordInput();
+    passwordInput.clear();
+    passwordInput.sendKeys(password);
   }
 
   // Login button
@@ -79,6 +125,10 @@ public class LoginPage extends BasePage<LoginPage> {
   ///////////////////////////////////////////////////////////////////
   private String loginButtonSelector = "button[type='submit']";
   private String expectedLoginButtonText = "Login";
+
+  public String getExpectedLoginButtonText() {
+    return expectedLoginButtonText;
+  }
 
   public WebElement getLoginButtonElement() {
     return driver.findElement(By.cssSelector(loginButtonSelector));
@@ -99,29 +149,6 @@ public class LoginPage extends BasePage<LoginPage> {
   public boolean isLoginButtonIconDisplayed() {
     WebElement iconElement = getLoginButtonElement().findElement(By.tagName("i"));
     return iconElement.isDisplayed();
-  }
-
-  // Getters
-  ///////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
-  public String getExpectedHeaderText() {
-    return expectedHeaderText;
-  }
-
-  public String getExpectedSubheaderText() {
-    return expectedSubheaderText;
-  }
-
-  public String getExpectedUsernameLabelText() {
-    return expectedUsernameLabelText;
-  }
-
-  public String getExpectedPasswordLabelText() {
-    return expectedPasswordLabelText;
-  }
-
-  public String getExpectedLoginButtonText() {
-    return expectedLoginButtonText;
   }
 
 }
