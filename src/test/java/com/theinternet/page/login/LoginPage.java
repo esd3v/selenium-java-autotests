@@ -1,10 +1,9 @@
 package com.theinternet.page.login;
 
+import com.common.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.common.BasePage;
 
 public class LoginPage extends BasePage<LoginPage> {
   public LoginPage(WebDriver driver) {
@@ -15,7 +14,8 @@ public class LoginPage extends BasePage<LoginPage> {
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
   private String expectedInvalidUsernameAlertText = "Your username is invalid!";
-  private String expectedUnauthenticatedSecurePageAlertText = "You must login to view the secure area!";
+  private String expectedUnauthenticatedSecurePageAlertText =
+      "You must login to view the secure area!";
 
   public String getExpectedUnauthenticatedSecurePageAlertText() {
     return expectedUnauthenticatedSecurePageAlertText;
@@ -31,7 +31,8 @@ public class LoginPage extends BasePage<LoginPage> {
   private String headerTag = "h2";
   private String subheaderTag = "h4";
   private String expectedHeaderText = "Login Page";
-  private String expectedSubheaderText = "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
+  private String expectedSubheaderText =
+      "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
   public String getExpectedHeaderText() {
     return expectedHeaderText;
@@ -155,5 +156,4 @@ public class LoginPage extends BasePage<LoginPage> {
     WebElement iconElement = getLoginButtonElement().findElement(By.tagName("i"));
     return iconElement.isDisplayed();
   }
-
 }

@@ -1,10 +1,9 @@
 package com.theinternet.page.secure;
 
+import com.common.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.common.BasePage;
 
 public class SecurePage extends BasePage<SecurePage> {
   public SecurePage(WebDriver driver) {
@@ -26,7 +25,8 @@ public class SecurePage extends BasePage<SecurePage> {
   private String headerTag = "h2";
   private String subheaderTag = "h4";
   private String expectedHeaderText = "Secure Area";
-  private String expectedSubheaderText = "Welcome to the Secure Area. When you are done click logout below.";
+  private String expectedSubheaderText =
+      "Welcome to the Secure Area. When you are done click logout below.";
 
   public String getExpectedHeaderText() {
     return expectedHeaderText;
@@ -69,5 +69,4 @@ public class SecurePage extends BasePage<SecurePage> {
   public String getLogoutButtonText() {
     return getLogoutButtonElement().getText();
   }
-
 }

@@ -1,10 +1,9 @@
 package com.theinternet.page.key_presses;
 
+import com.common.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.common.BasePage;
 
 public class KeyPressesPage extends BasePage<KeyPressesPage> {
   private String inputTag = "input";
@@ -29,5 +28,4 @@ public class KeyPressesPage extends BasePage<KeyPressesPage> {
   public String getResultValue() {
     return this.getResultText().split(":")[1].trim();
   }
-
 }

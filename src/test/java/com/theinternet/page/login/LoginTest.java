@@ -3,7 +3,10 @@ package com.theinternet.page.login;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.common.BaseTest;
+import com.theinternet.component.alert.AlertComponent;
+import com.theinternet.page.secure.SecurePage;
+import io.qase.api.annotation.QaseId;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
@@ -11,16 +14,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.common.BaseTest;
-import com.theinternet.component.alert.AlertComponent;
-import com.theinternet.page.secure.SecurePage;
-
-import io.qase.api.annotation.QaseId;
-
 public class LoginTest extends BaseTest {
 
   @ParameterizedTest
-  @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
+  @ValueSource(classes = {ChromeDriver.class, FirefoxDriver.class})
   @QaseId(15)
   public void testLoginPageOpen(Class<? extends WebDriver> webDriverClass) {
     WebDriver driver = createDriver(webDriverClass);
@@ -47,7 +44,7 @@ public class LoginTest extends BaseTest {
   }
 
   @ParameterizedTest
-  @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
+  @ValueSource(classes = {ChromeDriver.class, FirefoxDriver.class})
   @QaseId(16)
   public void testSubmitEmptyForm(Class<? extends WebDriver> webDriverClass) {
     WebDriver driver = createDriver(webDriverClass);
@@ -59,18 +56,19 @@ public class LoginTest extends BaseTest {
     // Check if page redirected back to /login
     loginPage.isLoaded();
 
-    WebElement loginPageErrorAlert = alertComponent.getAlertByText(loginPage.getExpectedInvalidUsernameAlertText());
+    WebElement loginPageErrorAlert =
+        alertComponent.getAlertByText(loginPage.getExpectedInvalidUsernameAlertText());
 
     assertTrue(loginPageErrorAlert.isDisplayed());
     assertTrue(alertComponent.isError(loginPageErrorAlert));
     assertTrue(alertComponent.clickAlertCloseAndWaitToDetach(loginPageErrorAlert));
-
   }
 
   @ParameterizedTest
-  @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
+  @ValueSource(classes = {ChromeDriver.class, FirefoxDriver.class})
   @QaseId(13)
-  public void testSubmitValidForm(Class<? extends WebDriver> webDriverClass) throws InterruptedException {
+  public void testSubmitValidForm(Class<? extends WebDriver> webDriverClass)
+      throws InterruptedException {
     WebDriver driver = createDriver(webDriverClass);
     LoginPage loginPage = new LoginPage(driver);
     SecurePage securePage = new SecurePage(driver);
@@ -83,7 +81,8 @@ public class LoginTest extends BaseTest {
 
     securePage.isLoaded();
 
-    WebElement securePageSuccessAlert = alertComponent.getAlertByText(securePage.getExpectedSuccessAlertText());
+    WebElement securePageSuccessAlert =
+        alertComponent.getAlertByText(securePage.getExpectedSuccessAlertText());
 
     assertTrue(securePageSuccessAlert.isDisplayed());
     assertTrue(alertComponent.isSuccess(securePageSuccessAlert));
@@ -94,7 +93,5 @@ public class LoginTest extends BaseTest {
 
     assertTrue(securePage.isLogoutButtonDisplayed());
     assertEquals(securePage.getExpectedLogoutButtonText(), securePage.getLogoutButtonText());
-
   }
-
 }

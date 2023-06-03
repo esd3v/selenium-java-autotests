@@ -2,6 +2,8 @@ package com.theinternet.page.key_presses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.common.BaseTest;
+import io.qase.api.annotation.QaseId;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.Keys;
@@ -10,13 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.common.BaseTest;
-
-import io.qase.api.annotation.QaseId;
-
 public class KeyPressesTest extends BaseTest {
   @ParameterizedTest
-  @ValueSource(classes = { ChromeDriver.class, FirefoxDriver.class })
+  @ValueSource(classes = {ChromeDriver.class, FirefoxDriver.class})
   @QaseId(11)
   public void testKeyValueDisplay(Class<? extends WebDriver> webDriverClass) {
     WebDriver driver = createDriver(webDriverClass);
@@ -27,23 +25,23 @@ public class KeyPressesTest extends BaseTest {
     WebElement input = keyPressesPage.getInputElement();
 
     Object[] keys = {
-        Keys.ESCAPE,
-        Keys.F1,
-        Keys.F2,
-        Keys.F3,
-        "`",
-        "q",
-        "w",
-        "e",
-        "r",
-        "t",
-        "y",
-        "u",
-        "i",
-        "o",
-        "p",
-        "[",
-        "]"
+      Keys.ESCAPE,
+      Keys.F1,
+      Keys.F2,
+      Keys.F3,
+      "`",
+      "q",
+      "w",
+      "e",
+      "r",
+      "t",
+      "y",
+      "u",
+      "i",
+      "o",
+      "p",
+      "[",
+      "]"
     };
 
     for (Object item : keys) {
@@ -80,5 +78,4 @@ public class KeyPressesTest extends BaseTest {
       assertEquals(expected.toUpperCase(), resultValue);
     }
   }
-
 }
