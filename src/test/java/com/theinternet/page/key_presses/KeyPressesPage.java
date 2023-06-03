@@ -7,19 +7,19 @@ import org.openqa.selenium.WebElement;
 import com.common.BasePage;
 
 public class KeyPressesPage extends BasePage<KeyPressesPage> {
-  private By input = By.tagName("input");
-  private By result = By.cssSelector("#result");
+  private String inputTag = "input";
+  private String resultId = "result";
 
   public KeyPressesPage(WebDriver driver) {
     super(driver, "key_presses");
   }
 
   public WebElement getInputElement() {
-    return this.driver.findElement(input);
+    return this.driver.findElement(By.tagName(inputTag));
   }
 
   public WebElement getResultElement() {
-    return this.driver.findElement(result);
+    return this.driver.findElement(By.id(resultId));
   }
 
   public String getResultText() {

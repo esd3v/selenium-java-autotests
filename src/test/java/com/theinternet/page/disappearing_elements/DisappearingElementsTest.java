@@ -1,8 +1,9 @@
 package com.theinternet.page.disappearing_elements;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,10 +25,18 @@ public class DisappearingElementsTest extends BaseTest {
     WebDriver driver = createDriver(webDriverClass);
     DisappearingElementsPage disappearingElementsPage = new DisappearingElementsPage(driver);
 
+    ArrayList<String> itemText = new ArrayList<>();
+
     disappearingElementsPage.load();
 
-    List<WebElement> items = disappearingElementsPage.getItems();
-    assertEquals(disappearingElementsPage.expectedItems, items.size());
+    for (WebElement item : disappearingElementsPage.getItems()) {
+      String text = item.getText();
+      itemText.add(text);
+    }
+
+    Boolean isEqual = Arrays.asList(disappearingElementsPage.getExpectedItemText()).equals(itemText);
+
+    assertTrue(isEqual);
 
   }
 
