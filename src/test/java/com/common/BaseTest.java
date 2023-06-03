@@ -34,6 +34,11 @@ public abstract class BaseTest {
 
     if (webDriverClass == ChromeDriver.class) {
       ChromeOptions chromeOptions = new ChromeOptions();
+      String binaryPath = appConfig.chromeBinaryPath();
+
+      if (!binaryPath.isEmpty()) {
+        chromeOptions.setBinary(binaryPath);
+      }
 
       if (appConfig.isHeadless()) {
         chromeOptions.addArguments("--headless");
@@ -42,6 +47,11 @@ public abstract class BaseTest {
       options = chromeOptions;
     } else if (webDriverClass == FirefoxDriver.class) {
       FirefoxOptions firefoxOptions = new FirefoxOptions();
+      String binaryPath = appConfig.firefoxBinaryPath();
+
+      if (!binaryPath.isEmpty()) {
+        firefoxOptions.setBinary(binaryPath);
+      }
 
       if (appConfig.isHeadless()) {
         firefoxOptions.addArguments("-headless");
