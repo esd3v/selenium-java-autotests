@@ -3,6 +3,7 @@ package com.common;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import javax.annotation.Nullable;
 
 public class AppProperties {
   private static final String path = "src/main/resources/app.properties";
@@ -21,7 +22,7 @@ public class AppProperties {
     }
   }
 
-  public String getProperty(String key) {
+  public @Nullable String getProperty(String key) {
     return properties.getProperty(key);
   }
 }

@@ -26,6 +26,7 @@ public abstract class BaseTest {
 
   public WebDriver createDriver(Class<? extends WebDriver> webDriverClass, Integer... dimensions) {
     AppConfig appConfig = new AppConfig();
+    Boolean isHeadless = appConfig.isHeadless();
     Capabilities options = null;
 
     int width = (dimensions.length > 0) ? dimensions[0] : 1920;
@@ -36,11 +37,11 @@ public abstract class BaseTest {
       ChromeOptions chromeOptions = new ChromeOptions();
       String binaryPath = appConfig.chromeBinaryPath();
 
-      if (!binaryPath.isEmpty()) {
+      if (binaryPath != null && !binaryPath.isEmpty()) {
         chromeOptions.setBinary(binaryPath);
       }
 
-      if (appConfig.isHeadless()) {
+      if (isHeadless != null && appConfig.isHeadless()) {
         chromeOptions.addArguments("--headless");
       }
 
@@ -49,11 +50,11 @@ public abstract class BaseTest {
       FirefoxOptions firefoxOptions = new FirefoxOptions();
       String binaryPath = appConfig.firefoxBinaryPath();
 
-      if (!binaryPath.isEmpty()) {
+      if (binaryPath != null && !binaryPath.isEmpty()) {
         firefoxOptions.setBinary(binaryPath);
       }
 
-      if (appConfig.isHeadless()) {
+      if (isHeadless != null && appConfig.isHeadless()) {
         firefoxOptions.addArguments("-headless");
       }
 
