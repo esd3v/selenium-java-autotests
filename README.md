@@ -1,7 +1,6 @@
-## Minimum Requirements
-- Maven 3.6.3
-- Java 11.0.18
-- Linux / macOS
+## System Requirements
+- Maven 3.6.0+
+- JDK 8+
 - Firefox, Chrome browsers installed
 
 ## Setup
