@@ -5,7 +5,7 @@
 
 ## Setup
 
-1. Add these properties with your values to `src/main/resources/app.properties`:
+1. Optionally, add these properties with your values to `src/main/resources/app.properties`:
     - `QASE_ENABLE=true`
     - `QASE_PROJECT_CODE=PRJ`
     - `QASE_RUN_ID=123`
